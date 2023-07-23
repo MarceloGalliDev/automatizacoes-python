@@ -3,6 +3,10 @@ import ssl
 import smtplib
 import mimetypes
 import os
+from imbox import Imbox
+from datetime import datetime
+import pandas as pd
+
 
 email_senha = open('pass', 'r').read()
 email_origem = 'conta_email@email.com'
@@ -36,3 +40,30 @@ with smtplib.SMTP_SSL('aqui vai o servidor', 'porta', context=safe) as smtp:
     smtp.sendmail(email_origem, email_destino, mensagem.as_string())
     
 # ler e-mails
+# necessário o pip install imbox
+username = 'email@email.com'
+password = 'password'
+
+host = 'servidor do email'
+
+mail = Imbox(host, username=username, password=password, ssl=True)
+
+#carregando todas as emails do email, tem vários filtros, verificar a documentação do Imbox
+messages = mail.messages()
+
+#lendo uma mensagem
+for (uid, message) in messages:
+    message.subject
+    message.body
+    message.sent_from
+    message.sent_to
+    message.headers
+    message.date
+    if len(message.attachments) > 0:
+        for attach in message.attachments:
+            file = open('attachment/arquivo.pdf', 'wb')
+            # jogamos o ponteiro do python para o inicio do script
+            attach['content'].seek(0)
+            file.write(attach['content'].read())
+            file.close()
+    break
