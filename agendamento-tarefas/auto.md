@@ -18,5 +18,16 @@
             - * * * * * ele indica o tempo a ser executado o script
 
 >No windows
-    - agendamento de tarefas
+    - agendador de tarefas
+        - ação > criar tarefa
+            - geral
+                - coloque o nome
+            - disparadores
+                - aqui escolhemos o formato que sera disparado o scripts
+                - pegando o path python -c "import sys; print(sys.executable)"
+                - novo
+                    - colocar o path
+                    - coloque o nome do arquivo que contém o script.extensão
+                    - iniciar em, é a localização do arquivo script
+             
 
